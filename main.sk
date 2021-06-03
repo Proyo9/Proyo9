@@ -1,0 +1,74 @@
+on chat:
+	cancel event
+	if player's gamemode is survival:
+		if {%player's uuid%.live} is true:
+			broadcast "&8[&dLIVE&8] &d%player%&7: &f%message%"
+		else:
+			broadcast "&8[&aAlive&8] &a%player%&7: &f%message%"
+	if player's gamemode is spectator:
+		broadcast "&8[&cDead&8] &c%player%&7: &f%message%"
+	if player's gamemode is creative:
+		broadcast "&8[&bDev-Mode&8] &b%player%&7: &f%message%"
+on death:
+	set {%player%.dying} to true
+	execute console command "/nte player %player% prefix &c"
+on respawn:
+	if {%player%.dod} is true:
+		send "&cYou start to pass onto the afterlife..."
+		wait 3 second
+		send "&cIn hell."
+		wait 1 second
+		set player's gamemode to spectator
+		execute player command "/world world_nether"
+		set {%player%.dod} to false
+	else:
+		send "&aYou start to pass onto the afterlife..."
+		wait 5 second
+		teleport player to {_heaven}
+		set player's gamemode to spectator
+		set {%player%.dying} to false
+		set {%player%.dod} to false
+on disconnect:
+	if {%player%.dying} is true:
+		set {%player%.dod} to true
+command /setheaven:
+	trigger:
+		if player is "Proyo9":
+			set {_heaven} to player's location
+command /sethell:
+	trigger:
+		if player is "Proyo9":
+			set {_hell} to player's location
+on join:
+	send "&aYou have been given 60 seconds of invincibility."
+	execute console command "/effect give %player% minecraft:resistance 60 255 true"
+	execute console command "/effect give %player% minecraft:fire_resistance 60 255 true"
+	wait 60 seconds
+	send "&aYour invincibility has ran out. Be careful!" to player
+command /console <text>:
+	trigger:
+		if player is "Proyo9":
+			execute console command "%arg-1%"
+command /dev:
+	trigger:
+		if player is "Proyo9":
+			if player has permission "op":
+				execute console command "/deop Proyo9"
+				execute console command "/gms Proyo9"
+				send "&c&lDisabled Developer mode" to player
+				execute console command "/nte player %player% prefix &a"
+			else:
+				execute console command "/gmc Proyo9"
+				execute console command "/op Proyo9"
+				send "&b&lEnabled Developer mode" to player
+				execute console command "/nte player %player% prefix &b"
+command /live:
+	trigger:
+		if {%player's uuid%.live} is true:
+			send "&cLive mode has been disabled." to player
+			set {%player's uuid%.live} to false
+			execute console command "/nte player %player% prefix &a"
+		else:
+			set {%player's uuid%.live} to true
+			send "&dLive mode has been enabled" to player
+			execute console command "/nte player %player% prefix &d"
