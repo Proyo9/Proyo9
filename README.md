@@ -1,4 +1,3 @@
 - Hi, I’m @Proyo9
-- I’m interested in web development and plugin development for the java edition of Minecraft.
-- I’m currently learning Java
-- Reach me at proyobusiness@gmail.com
+- I’m currently learning Java, PHP, and C#
+
