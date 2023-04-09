@@ -8,6 +8,9 @@
 
 ## Current Websites
 [py9.dev](https://py9.dev/)
+
 [forum.py9.dev](https://forum.py9.dev/)
+
 [comicsans.beauty](https://comicsans.beauty/)
+
 [shrek.beauty](https://shrek.beauty/)
