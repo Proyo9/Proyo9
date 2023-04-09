@@ -16,5 +16,3 @@
 [comicsans.beauty](https://comicsans.beauty/)
 
 [shrek.beauty](https://shrek.beauty/)
-
-<iframe src="https://py9.dev/meow/"></iframe>
